@@ -1,13 +1,17 @@
 Rails.application.routes.draw do
 
-  scope path: "api" do
-    resources :shows, defaults: { :format => :json }
-  end
+  devise_for :users
+  get 'shows' => 'shows#index'
 
-  resources :users do
-    resources :shows
-    resources :favourite_shows
-  end
+  
+  # scope path: "api" do
+  #   resources :shows, defaults: { :format => :json }
+  # end
+
+  # resources :users do
+  #   resources :shows
+  #   resources :favourite_shows
+  # end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -1,11 +1,17 @@
 class ShowsController < ApplicationController
+  before_action :authenticate_user!
 
   def index
-    respond_to do |format|
-      format.html
-      format.json { render json: Show.all }
-    end
+    shows = current_user.favourites
+    render json: shows
   end
+
+  # def index
+  #   respond_to do |format|
+  #     format.html
+  #     format.json { render json: Show.all }
+  #   end
+  # end
 
   def create
     show = Show.create( show_params )
